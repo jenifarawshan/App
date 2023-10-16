@@ -15,6 +15,15 @@
     <servlet-name>UpdateProduct</servlet-name>
     <servlet-class>servlets.UpdateProduct</servlet-class>
   </servlet>
+  
+  <filter>
+    <filter-name>CharacterEncodingFilter</filter-name>
+    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
 
   <servlet-mapping>
     <servlet-name>ListProducts</servlet-name>
@@ -30,6 +39,16 @@
     <servlet-name>UpdateProduct</servlet-name>
     <url-pattern>/products/update/*</url-pattern>
     <url-pattern>/products/delete/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddListSales</servlet-name>
+    <servlet-class>servlets.AddListSales</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddListSales</servlet-name>
+    <url-pattern>/sales</url-pattern>
   </servlet-mapping>
   
 </web-app>
