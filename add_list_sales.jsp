@@ -9,9 +9,6 @@
     List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
     String errorMessage = (String) request.getAttribute("errorMessage");
     
-    System.out.println("Received sales list: " + salesList);
-    System.out.println("Received product list: " + productList);
-    System.out.println("Received error message: " + errorMessage);
 %>
 
 <!DOCTYPE html>
@@ -89,7 +86,7 @@
         </table>
 
         <h2>Add Sales Data</h2>
-        <h3>売上日: ${currentDate}  <button class="btn btn-lg btn-primary" id="submit" onclick="location.href ='products'" >製品を検索</button> </h3>
+        <p>売上日: ${currentDate}</p>
         
         <form action="${pageContext.request.contextPath}/sales" method="post">
             Product Code:
@@ -107,6 +104,8 @@
             Quantity: <input type="number" name="quantity" value=1 min=1 required><br>
             <input type="submit" value="Add Sales">
         </form>
+        
+        <button class="btn btn-lg btn-primary" id="submit" onclick="location.href ='products'" >製品リスト</button>
 
 
         <% if (errorMessage != null) { %>
