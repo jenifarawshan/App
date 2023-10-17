@@ -34,13 +34,15 @@ public class AddListSales extends HttpServlet {
         // Implement logic to list sales for today and populate the JSP
         try {
             // Get the current date in the format "yyyy-MM-dd"
-            String currentDate = java.time.LocalDate.now().toString();
+        	
+        	String currentDate = java.time.LocalDate.now().toString();
 
             // Call listSales with the date parameter
             List<SalesDTO> salesList = salesDAO.listSales(currentDate);
 
             // Set the salesList in the request to be used in the JSP
             request.setAttribute("salesList", salesList);
+            request.setAttribute("currentDate", currentDate);
             System.out.println("Sales list size: " + salesList.size());
 
             // Get the list of products from the ProductDAO ProductDAO
@@ -65,6 +67,7 @@ public class AddListSales extends HttpServlet {
             throws ServletException, IOException {
         // Implement logic to add new sales data
         try {
+        	
             int productCode = Integer.parseInt(request.getParameter("productCode"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
 
@@ -80,7 +83,8 @@ public class AddListSales extends HttpServlet {
             }
 
             // Redirect to doGet to display the updated sales list
-            request.getRequestDispatcher("/app/sales").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/sales");
+
 
         } catch (NumberFormatException | SQLException e) {
             // Handle any exceptions appropriately
